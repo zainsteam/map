@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "497463621680",
+    "project_id": "scratchticketgenie-cda36",
+    "storage_bucket": "scratchticketgenie-cda36.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497463621680:android:137b42d78998d3eb2355f5",
+        "android_client_info": {
+          "package_name": "com.map"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiW4zVngCI8REeZe_xsX2wEtRvLvPkKW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      },
+      "admob_app_id": "ca-app-pub-3713847936361138~5663050909"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497463621680:android:4c0b65e06c7d80982355f5",
+        "android_client_info": {
+          "package_name": "com.ttt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiW4zVngCI8REeZe_xsX2wEtRvLvPkKW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
