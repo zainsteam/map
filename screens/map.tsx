@@ -9,20 +9,21 @@ import {
 } from 'react-native';
 import Map2Component from '../components/map2';
 import FloatingIcon from '../components/colorscheme';
+import MapComponent from '../components/map';
 
 export default function MapScreen({route, navigation}: any) {
   const {type} = route.params;
   return (
     <View style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        translucent={true}
+        backgroundColor="transparent"
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <StatusBar
-          barStyle="light-content"
-          translucent={true}
-          backgroundColor="transparent"
-        />
         <Map2Component type={type} navigation={navigation} />
       </ScrollView>
-      {type === 'Newest' ? <></> : <FloatingIcon iconName="info" />}
+      {/* {type === 'Newest' ? <></> : <FloatingIcon iconName="info" />} */}
     </View>
   );
 }

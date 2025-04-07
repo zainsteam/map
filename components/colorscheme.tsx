@@ -9,9 +9,11 @@ interface FloatingIconProps {
 
 const FloatingIcon: React.FC<FloatingIconProps> = ({iconName}) => {
   const [isModalVisible, setModalVisible] = useState(false);
+  console.log(isModalVisible, 'model status');
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+    console.log(isModalVisible, 'model status');
   };
 
   return (
@@ -29,11 +31,10 @@ const FloatingIcon: React.FC<FloatingIconProps> = ({iconName}) => {
 
       {/* Modal */}
       <Modal
-        visible={isModalVisible}
         transparent={true}
         statusBarTranslucent
-        animationType="slide"
-        onRequestClose={toggleModal}>
+        visible={isModalVisible}
+        onRequestClose={() => toggleModal()}>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Color Scheme</Text>
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   closeButton: {
+    // zIndex: 99999,
     position: 'absolute',
     top: -35,
     right: 20,

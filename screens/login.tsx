@@ -13,10 +13,11 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Toast from '../components/toast';
 import {loginUser} from '../providers/apiprovider'; // Ensure you have this function imported
+import {getMessaging, getToken} from '@react-native-firebase/messaging';
 
 const LoginScreen = ({navigation}: any) => {
-  const [email, setEmail] = useState('alberto@gmail.com');
-  const [password, setPassword] = useState('password');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
@@ -25,6 +26,17 @@ const LoginScreen = ({navigation}: any) => {
     type: 'success',
     position: 'top',
   });
+
+  async function getFCMToken() {
+    try {
+      await getMessaging().registerDeviceForRemoteMessages();
+      const token = await getMessaging().getToken();
+      console.log('login FCM Token:', token);
+      return token;
+    } catch (error) {
+      console.error('Failed to get FCM token:', error);
+    }
+  }
 
   const showToast = (type: any, message: any, position: any) => {
     setToastConfig({type, message, position});
@@ -37,10 +49,10 @@ const LoginScreen = ({navigation}: any) => {
       showToast('error', 'Email and password are required', 'top');
       return;
     }
+    const mobileToken = await getFCMToken(); // Replace with actual token if dynamic
 
     setLoading(true);
     try {
-      const mobileToken = 'fsdfsdfdsfsdfsd'; // Replace with actual token if dynamic
       const response = await loginUser(email, password, mobileToken);
 
       if (response) {

@@ -235,9 +235,12 @@ const Map2Component = ({type, navigation}: any) => {
             selectionColor="black"
             accessibilityIgnoresInvertColors={true}
             dropdownIconColor="black"
-            onValueChange={(itemValue, itemIndex) =>
-              stateSelected(itemValue, type, false)
-            }
+            onValueChange={(itemValue, itemIndex) => {
+              if (itemValue !== '') {
+                stateSelected(itemValue, type, false);
+                setSelectedState('');
+              }
+            }}
             style={styles.picker}>
             <Picker.Item label="Select a state..." value="" />
             {states.map((state, index) => (
@@ -340,23 +343,23 @@ const Map2Component = ({type, navigation}: any) => {
             </PinchGestureHandler>
           </GestureHandlerRootView>
           {/* Zoom Controls */}
+          <View style={styles.zoomControls}>
+            <TouchableOpacity onPress={handleZoomIn} style={styles.zoomButton}>
+              <Text style={styles.zoomText}>+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleZoomOut} style={styles.zoomButton}>
+              <Text style={styles.zoomText}>-</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
-        <View style={styles.zoomControls}>
-          <TouchableOpacity onPress={handleZoomIn} style={styles.zoomButton}>
-            <Text style={styles.zoomText}>+</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleZoomOut} style={styles.zoomButton}>
-            <Text style={styles.zoomText}>-</Text>
-          </TouchableOpacity>
-        </View>
         {/* Right Arrow */}
         {/* {showRightArrow && (
           <TouchableOpacity
-            style={[styles.arrowContainer, styles.rightArrow]}
-            onPress={() => scrollTo('right')}>
-            <Icon name="arrow-right" size={24} color="#000" />
+          style={[styles.arrowContainer, styles.rightArrow]}
+          onPress={() => scrollTo('right')}>
+          <Icon name="arrow-right" size={24} color="#000" />
           </TouchableOpacity>
-        )} */}
+          )} */}
       </View>
     </>
   );
@@ -433,14 +436,14 @@ const styles = StyleSheet.create({
     textAlign: 'left',
   },
   container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#f0f0f0',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0',
   },
   zoomControls: {
     position: 'absolute',
-    bottom: 20,
+    bottom: 100,
     left: 10,
     flexDirection: 'row',
     backgroundColor: 'rgba(188, 186, 186, 0.5)',
